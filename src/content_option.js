@@ -12,7 +12,7 @@ const introdata = {
         third: "I love coding",
     },
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at nisl euismod urna bibendum",
-    your_img_url: "https://images.unsplash.com/photo-1514790193030-c89d266d5a9d",
+    your_img_url: "https://raw.githubusercontent.com/Dev-WilmerR/MyPortfolio/refs/heads/main/public/myprofile1.jpeg",
 };
 
 const dataabout = {
