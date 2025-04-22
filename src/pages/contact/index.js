@@ -28,33 +28,38 @@ export const ContactUs = () => {
       message: formData.message,
     };
 
-    emailjs
-      .send(
-        contactConfig.YOUR_SERVICE_ID,
-        contactConfig.YOUR_TEMPLATE_ID,
-        templateParams,
-        contactConfig.YOUR_USER_ID
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-          setFormdata({
-            loading: false,
-            alertmessage: "SUCCESS! ,Thankyou for your messege",
-            variant: "success",
-            show: true,
-          });
-        },
-        (error) => {
-          console.log(error.text);
-          setFormdata({
-            alertmessage: `Faild to send!,${error.text}`,
-            variant: "danger",
-            show: true,
-          });
-          document.getElementsByClassName("co_alert")[0].scrollIntoView();
+    fetch(contactConfig.PRIVATEMAIL_API_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(templateParams),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to send message");
         }
-      );
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data.message);
+        setFormdata({
+          loading: false,
+          alertmessage: "SUCCESS! Thank you for your message",
+          variant: "success",
+          show: true,
+        });
+      })
+      .catch((error) => {
+        console.error(error.message);
+        setFormdata({
+          loading: false,
+          alertmessage: `Failed to send! ${error.message}`,
+          variant: "danger",
+          show: true,
+        });
+        document.getElementsByClassName("co_alert")[0].scrollIntoView();
+      });
   };
 
   const handleChange = (e) => {
@@ -74,7 +79,7 @@ export const ContactUs = () => {
         </Helmet>
         <Row className="mb-5 mt-3 pt-md-3">
           <Col lg="8">
-            <h1 className="display-4 mb-4">Contact Me</h1>
+            <h1 className="display-4 mb-4">Contact</h1>
             <hr className="t_border my-4 ml-0 text-left" />
           </Col>
         </Row>
@@ -93,7 +98,7 @@ export const ContactUs = () => {
             </Alert>
           </Col>
           <Col lg="5" className="mb-5">
-            <h3 className="color_sec py-4">Get in touch</h3>
+            <h3 className="color_sec py-4">Let's Work togheter!</h3>
             <address>
               <strong>Email:</strong>{" "}
               <a href={`mailto:${contactConfig.YOUR_EMAIL}`}>
@@ -111,7 +116,7 @@ export const ContactUs = () => {
             </address>
             <p>{contactConfig.description}</p>
           </Col>
-          <Col lg="7" className="d-flex align-items-center">
+          {/* <Col lg="7" className="d-flex align-items-center">
             <form onSubmit={handleSubmit} className="contact__form w-100">
               <Row>
                 <Col lg="6" className="form-group">
@@ -158,7 +163,7 @@ export const ContactUs = () => {
                 </Col>
               </Row>
             </form>
-          </Col>
+          </Col> */}
         </Row>
       </Container>
       <div className={formData.loading ? "loading-bar" : "d-none"}></div>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./style.css";
 import { VscGrabber, VscClose } from "react-icons/vsc";
 import { Link } from "react-router-dom";
-import { logotext ,socialprofils } from "../content_option";
+import { logotext, logoimage ,socialprofils } from "../content_option";
 import Themetoggle from "../components/themetoggle";
 
 const Headermain = () => {
@@ -16,9 +16,9 @@ const Headermain = () => {
   return (
     <>
       <header className="fixed-top site__header">
-        <div className="d-flex align-items-center justify-content-between">
+        <div className="d-flex align-items-center justify-content-between nav_ac">
           <Link  className="navbar-brand nav_ac" to="/">
-            {logotext}
+            <img src={logoimage} alt="logo" className="logo w-[100px]" />            
           </Link>
           <div className="d-flex align-items-center">
           <Themetoggle />
