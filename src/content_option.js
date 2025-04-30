@@ -1,8 +1,8 @@
 const logoimage = "./assets/mylogo.png";
 const logotext = "WILMER RAMIREZ";
 const meta = {
-    title: "John Doe",
-    description: "I’m John Doe data scientist _ Full stack devloper,currently working in Berlin",
+    title: "Wilmer Ramírez",
+    description: "I’m Wilmer Ramírez, a Fullstack Shopify Developer with 6 years of experience.",   
 };
 
 const introdata = {
